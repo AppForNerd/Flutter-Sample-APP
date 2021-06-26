@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "358739739948",
+    "project_id": "untitled-6a73b",
+    "storage_bucket": "untitled-6a73b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:358739739948:android:bc5565462eec76124d9889",
+        "android_client_info": {
+          "package_name": "com.appfornerds"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "358739739948-ua76fc7kbis2c5iefdeipvvutf95301o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAJiSQQ40wIg0qs5dJeof7_cAFPpO_guCU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "358739739948-ua76fc7kbis2c5iefdeipvvutf95301o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
