@@ -7,15 +7,16 @@ class Body extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      
       children: [
-        SizedBox(height: SizeConfig.screenHeight * 0.04),
+        SizedBox(height: SizeConfig.screenHeight * 0.04, width: double.infinity),
         Image.asset(
           "assets/images/success.png",
           height: SizeConfig.screenHeight * 0.4, //40%
         ),
-        SizedBox(height: SizeConfig.screenHeight * 0.08),
+        SizedBox(height: SizeConfig.screenHeight * 0.08, width: double.infinity),
         Text(
-          "Login Success",
+          "Registration Success",
           style: TextStyle(
             fontSize: getProportionateScreenWidth(30),
             fontWeight: FontWeight.bold,
@@ -24,9 +25,10 @@ class Body extends StatelessWidget {
         ),
         Spacer(),
         SizedBox(
+          // width: SizeConfig.screenWidth * 0.6,
           width: SizeConfig.screenWidth * 0.6,
           child: DefaultButton(
-            text: "Back to home",
+            text: "Let's start!",
             press: () {
               Navigator.pushNamed(context, HomeScreen.routeName);
             },
