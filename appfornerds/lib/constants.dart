@@ -45,6 +45,8 @@ final otpInputDecoration = InputDecoration(
   border: outlineInputBorder(),
   focusedBorder: outlineInputBorder(),
   enabledBorder: outlineInputBorder(),
+  counterText: ""
+  
 );
 
 OutlineInputBorder outlineInputBorder() {

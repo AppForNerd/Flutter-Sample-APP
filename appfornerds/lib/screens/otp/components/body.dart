@@ -5,8 +5,19 @@ import 'package:appfornerds/size_config.dart';
 import 'otp_form.dart';
 
 class Body extends StatelessWidget {
+  final TextEditingController textEditingController1 =
+      new TextEditingController();
+  final TextEditingController textEditingController2 =
+      new TextEditingController();
+  final TextEditingController textEditingController3 =
+      new TextEditingController();
+  final TextEditingController textEditingController4 =
+      new TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    final Map<String, Object> rcvdData =
+        ModalRoute.of(context).settings.arguments;
     return SizedBox(
       width: double.infinity,
       child: Padding(
@@ -20,19 +31,36 @@ class Body extends StatelessWidget {
                 "OTP Verification",
                 style: headingStyle,
               ),
-              Text("We sent your code to +1 898 860 ***"),
+              Text(
+                  "We sent your code to ${rcvdData['countryCode']} ${rcvdData['phoneNumber']}"),
               buildTimer(),
-              OtpForm(),
+              new OtpForm(textEditingController1, textEditingController2,
+                  textEditingController3, textEditingController4, rcvdData['fromPage']),
               SizedBox(height: SizeConfig.screenHeight * 0.1),
               GestureDetector(
                 onTap: () {
                   // OTP code resend
                 },
-                child: Text(
-                  "Resend OTP Code",
-                  style: TextStyle(decoration: TextDecoration.underline),
+                child: TextButton(
+                  style: TextButton.styleFrom(
+                    textStyle:
+                        const TextStyle(decoration: TextDecoration.underline),
+                  ),
+                  onPressed: () {
+                    textEditingController1.clear();
+                    textEditingController2.clear();
+                    textEditingController3.clear();
+                    textEditingController4.clear();
+                    FocusScope.of(context).previousFocus();
+                    FocusScope.of(context).previousFocus();
+                    FocusScope.of(context).previousFocus();
+                  },
+                  child: const Text(
+                    "Resend OTP Code",
+                    style: TextStyle(color: kTextColor),
+                  ),
                 ),
-              )
+              ),
             ],
           ),
         ),

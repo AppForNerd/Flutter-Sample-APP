@@ -1,11 +1,11 @@
 import 'package:appfornerds/components/custom_prefix_icon.dart';
 import 'package:appfornerds/screens/complete_profile/complete_profile_screen.dart';
+import 'package:appfornerds/screens/otp/otp_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:appfornerds/components/default_button.dart';
 import 'package:appfornerds/components/form_error.dart';
 import 'package:appfornerds/helper/keyboard.dart';
-import 'package:appfornerds/screens/login_success/login_success_screen.dart';
 
 import '../../../components/default_button.dart';
 import '../../../constants.dart';
@@ -52,9 +52,17 @@ class _SignFormState extends State<SignForm> {
                 KeyboardUtil.hideKeyboard(context);
                 // if all are valid then go to success screen
                 if (phoneNumber == "1111111111") {
-                  Navigator.pushNamed(context, LoginSuccessScreen.routeName);
+                  Navigator.pushNamed(context, OtpScreen.routeName, arguments: {
+                    "countryCode": countryCode != null ? countryCode : '+91',
+                    "phoneNumber": phoneNumber, "fromPage": 'login'
+                  });
                 } else {
-                  Navigator.pushNamed(context, CompleteProfileScreen.routeName);
+                  Navigator.pushNamed(context, CompleteProfileScreen.routeName,
+                      arguments: {
+                        "countryCode":
+                            countryCode != null ? countryCode : '+91',
+                        "phoneNumber": phoneNumber
+                      });
                 }
               }
             },
