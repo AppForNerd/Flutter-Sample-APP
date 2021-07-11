@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:appfornerds/components/no_account_text.dart';
 import '../../../size_config.dart';
 import 'form.dart';
 
@@ -36,7 +35,7 @@ class Body extends StatelessWidget {
                 SizedBox(height: getProportionateScreenHeight(300)),
                 // NoAccountText(),
                 Text(
-                  'By continuing your confirm that you agree \nwith our Terms and Conditions',
+                  'By continuing you are confirming that you agree \nwith our Terms and Conditions',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.caption,
                 )

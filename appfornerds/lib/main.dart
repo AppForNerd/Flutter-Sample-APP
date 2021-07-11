@@ -3,7 +3,6 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/material.dart';
 import 'package:appfornerds/theme.dart';
 import 'package:appfornerds/routes.dart';
-// import 'package:appfornerds/screens/profile/profile_screen.dart';
 import 'package:appfornerds/screens/splash/splash_screen.dart';
 
 void main() {

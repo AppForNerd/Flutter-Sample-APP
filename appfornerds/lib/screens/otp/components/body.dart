@@ -2,18 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:appfornerds/constants.dart';
 import 'package:appfornerds/size_config.dart';
 
+import '../otp_screen.dart';
 import 'otp_form.dart';
 
 class Body extends StatelessWidget {
-  final TextEditingController textEditingController1 =
-      new TextEditingController();
-  final TextEditingController textEditingController2 =
-      new TextEditingController();
-  final TextEditingController textEditingController3 =
-      new TextEditingController();
-  final TextEditingController textEditingController4 =
-      new TextEditingController();
-
   @override
   Widget build(BuildContext context) {
     final Map<String, Object> rcvdData =
@@ -34,8 +26,7 @@ class Body extends StatelessWidget {
               Text(
                   "We sent your code to ${rcvdData['countryCode']} ${rcvdData['phoneNumber']}"),
               buildTimer(),
-              new OtpForm(textEditingController1, textEditingController2,
-                  textEditingController3, textEditingController4, rcvdData['fromPage']),
+              new OtpForm(rcvdData['fromPage']),
               SizedBox(height: SizeConfig.screenHeight * 0.1),
               GestureDetector(
                 onTap: () {
@@ -47,20 +38,21 @@ class Body extends StatelessWidget {
                         const TextStyle(decoration: TextDecoration.underline),
                   ),
                   onPressed: () {
-                    textEditingController1.clear();
-                    textEditingController2.clear();
-                    textEditingController3.clear();
-                    textEditingController4.clear();
-                    FocusScope.of(context).previousFocus();
-                    FocusScope.of(context).previousFocus();
-                    FocusScope.of(context).previousFocus();
+                    Navigator.pushReplacementNamed(context, OtpScreen.routeName,
+                        arguments: {
+                          "countryCode": rcvdData['countryCode'] != null
+                              ? rcvdData['countryCode']
+                              : '+91',
+                          "phoneNumber": rcvdData['phoneNumber'],
+                          "fromPage": rcvdData['fromPage']
+                        });
                   },
                   child: const Text(
                     "Resend OTP Code",
                     style: TextStyle(color: kTextColor),
                   ),
                 ),
-              ),
+              )
             ],
           ),
         ),

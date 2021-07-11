@@ -54,7 +54,8 @@ class _SignFormState extends State<SignForm> {
                 if (phoneNumber == "1111111111") {
                   Navigator.pushNamed(context, OtpScreen.routeName, arguments: {
                     "countryCode": countryCode != null ? countryCode : '+91',
-                    "phoneNumber": phoneNumber, "fromPage": 'login'
+                    "phoneNumber": phoneNumber,
+                    "fromPage": 'login'
                   });
                 } else {
                   Navigator.pushNamed(context, CompleteProfileScreen.routeName,
@@ -81,10 +82,13 @@ class _SignFormState extends State<SignForm> {
       keyboardType: TextInputType.phone,
       onSaved: (newValue) => phoneNumber = newValue,
       onChanged: (value) {
-        print(value);
         if (value.isNotEmpty) {
           removeError(error: kPhoneNumberNullError);
         }
+        if (value.length == 10) {
+          removeError(error: kPhoneNumberLengthError);
+        }
+
         phoneNumber = value;
         return null;
       },
