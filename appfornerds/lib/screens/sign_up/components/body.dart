@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:appfornerds/components/socal_card.dart';
 import 'package:appfornerds/constants.dart';
 import 'package:appfornerds/size_config.dart';
 
