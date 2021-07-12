@@ -26,7 +26,7 @@ class Body extends StatelessWidget {
               Text(
                   "We sent your code to ${rcvdData['countryCode']} ${rcvdData['phoneNumber']}"),
               buildTimer(),
-              new OtpForm(rcvdData['fromPage']),
+              OtpForm(rcvdData['fromPage']),
               SizedBox(height: SizeConfig.screenHeight * 0.1),
               GestureDetector(
                 onTap: () {

@@ -1,11 +1,16 @@
 import 'package:appfornerds/screens/home/home_screen.dart';
 import 'package:appfornerds/screens/registration_success/registration_success_screen.dart';
+// import 'package:appfornerds/stores/otp.dart';
 import 'package:flutter/material.dart';
 import 'package:appfornerds/components/default_button.dart';
 import 'package:appfornerds/size_config.dart';
 import 'package:flutter/services.dart';
+import 'package:appfornerds/components/form_error.dart';
+// import 'package:flutter_mobx/flutter_mobx.dart';
 
 import '../../../constants.dart';
+
+// final OTP otpStore = OTP();
 
 class OtpForm extends StatefulWidget {
   OtpForm(this.fromPage);
@@ -29,6 +34,8 @@ class _OtpFormState extends State<OtpForm> {
   FocusNode pin3FocusNode;
   FocusNode pin4FocusNode;
   bool enableContinue = false;
+
+  final List<String> errors = [];
 
   @override
   void initState() {
@@ -54,8 +61,24 @@ class _OtpFormState extends State<OtpForm> {
     }
   }
 
+  void addError({String error}) {
+    if (!errors.contains(error))
+      setState(() {
+        errors.add(error);
+      });
+  }
+
+  void removeError({String error}) {
+    if (errors.contains(error))
+      setState(() {
+        errors.remove(error);
+      });
+  }
+
   @override
   Widget build(BuildContext context) {
+    // return Observer(
+    //   builder: (_) {
     return Form(
       child: Column(
         children: [
@@ -82,6 +105,7 @@ class _OtpFormState extends State<OtpForm> {
                       nextField(value, pin2FocusNode);
                     }
                     otp1 = value;
+                    // otpStore.setValue1(value);
                   },
                 ),
               ),
@@ -105,6 +129,7 @@ class _OtpFormState extends State<OtpForm> {
                       FocusScope.of(context).requestFocus(pin1FocusNode);
                     }
                     otp2 = value;
+                    // otpStore.setValue2(value);
                   },
                 ),
               ),
@@ -128,6 +153,7 @@ class _OtpFormState extends State<OtpForm> {
                       FocusScope.of(context).requestFocus(pin2FocusNode);
                     }
                     otp3 = value;
+                    // otpStore.setValue3(value);
                   },
                 ),
               ),
@@ -150,27 +176,43 @@ class _OtpFormState extends State<OtpForm> {
                       // Then you need to check is the code is correct or not
                     }
                     otp4 = value;
+                    // otpStore.setValue4(value);
                   },
                 ),
               ),
             ],
           ),
-          SizedBox(height: SizeConfig.screenHeight * 0.15),
+          // SizedBox(height: SizeConfig.screenHeight * 0.15),
+          SizedBox(height: getProportionateScreenHeight(30)),
+          FormError(errors: errors),
+          SizedBox(height: getProportionateScreenHeight(30)),
           DefaultButton(
             text: "Continue",
             press: () {
               if (otp1 != "" && otp2 != "" && otp3 != "" && otp4 != "") {
-                if (fromPage == 'complete_profile') {
-                  Navigator.pushNamed(
-                      context, RegistrationSuccessScreen.routeName);
+                if ("${otp1}${otp2}${otp3}${otp4}" == "1111") {
+                  if (fromPage == 'complete_profile') {
+                    Navigator.pushNamed(
+                        context, RegistrationSuccessScreen.routeName);
+                  } else {
+                    Navigator.pushNamed(context, HomeScreen.routeName);
+                  }
                 } else {
-                  Navigator.pushNamed(context, HomeScreen.routeName);
+                  print("Invalid OTP");
+                  removeError(error: kOtpNullError);
+                  addError(error: kOtpInvalidError);
                 }
+              } else {
+                print("Enter OTP");
+                removeError(error: kOtpInvalidError);
+                addError(error: kOtpNullError);
               }
             },
           ),
         ],
       ),
     );
+    //     },
+    //   );
   }
 }
