@@ -1,8 +1,8 @@
 import 'package:mobx/mobx.dart';
 
-// part 'otp.g.dart';
+part 'otp.g.dart';
 
-// class OTP = OTPBase with _$OTP;
+class OTP = OTPBase with _$OTP;
 
 abstract class OTPBase with Store {
   @observable
