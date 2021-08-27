@@ -14,7 +14,7 @@ class _CustomPrefixIconState extends State<CustomPrefixIcon> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: getProportionateScreenWidth(120),
+      width: getProportionateScreenWidth(130),
       child: CountryCodePicker(
           onChanged: (value) {
             setState(() {
